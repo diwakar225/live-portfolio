@@ -1,0 +1,16 @@
+flowchart LR
+  subgraph app[app]
+    Container[createAppContainer]
+  end
+  subgraph portfolio
+    PScreens[Screens + ViewModels] --> PDomain[usecases: position, summary, order]
+  end
+  subgraph market
+    Controller[PriceFeedController] --> QStore[(quoteStore)]
+    Feed[SimulatedPriceFeed] -. PriceFeed port .-> Controller
+    Rest[LiquideMarketDataSource] --> DataCtl[MarketDataController] --> QStore
+  end
+  Container --> portfolio
+  Container --> market
+  QStore --> PScreens
+  PDomain --> Paise[core/kernel: Paise, Result]

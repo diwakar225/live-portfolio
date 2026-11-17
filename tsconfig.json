@@ -1,0 +1,22 @@
+{
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    // Declared here rather than only inherited from the base config: if a tool
+    // cannot resolve "extends" (an editor running an older TypeScript, or one
+    // opened at a different root), the JSX flag would otherwise be lost and
+    // every .tsx file would fail with "Cannot use JSX unless the '--jsx' flag
+    // is provided". "react-native" leaves JSX for Metro/Babel to transform.
+    "jsx": "react-native",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["**/node_modules", "**/Pods", "ios", "android"]
+}
